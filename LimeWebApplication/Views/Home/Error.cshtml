@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "Error";
+}
+
+@model System.Exception
+
+<h2>Error</h2>
+<br/>
+@Html.DisplayTextFor(model => model.Message)
+
