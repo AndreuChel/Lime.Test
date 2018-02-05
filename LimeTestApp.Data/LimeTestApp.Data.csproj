@@ -55,27 +55,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NorthwindDataContext\Category.cs" />
-    <Compile Include="NorthwindDataContext\Customer.cs" />
-    <Compile Include="NorthwindDataContext\Employee.cs" />
-    <Compile Include="NorthwindDataContext\NorthwindModel.cs" />
-    <Compile Include="NorthwindDataContext\Order.cs" />
-    <Compile Include="NorthwindDataContext\OrderDetail.cs" />
-    <Compile Include="NorthwindDataContext\Product.cs" />
-    <Compile Include="NorthwindDataContext\Shipper.cs" />
-    <Compile Include="NorthwindDataContext\Supplier.cs" />
+    <Compile Include="NorthwindDb\Entities\Category.cs" />
+    <Compile Include="NorthwindDb\Entities\Customer.cs" />
+    <Compile Include="NorthwindDb\Entities\Employee.cs" />
+    <Compile Include="NorthwindDb\INorthwindContext.cs" />
+    <Compile Include="NorthwindDb\NorthwindContext.cs" />
+    <Compile Include="NorthwindDb\Entities\Order.cs" />
+    <Compile Include="NorthwindDb\Entities\OrderDetail.cs" />
+    <Compile Include="NorthwindDb\Entities\Product.cs" />
+    <Compile Include="NorthwindDb\Entities\Shipper.cs" />
+    <Compile Include="NorthwindDb\Entities\Supplier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\LimeTestApp.Core\LimeTestApp.Core.csproj">
-      <Project>{229953C8-B582-42FE-ACE2-4E08F4F75246}</Project>
-      <Name>LimeTestApp.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,4 +1,4 @@
-namespace LimeTestApp.Data.NorthwindDataContext
+namespace LimeTestApp.Data.NorthwindDb.Entities
 {
     using System;
     using System.Collections.Generic;

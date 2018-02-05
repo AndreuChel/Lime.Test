@@ -1,6 +1,10 @@
-﻿using LimeTestApp.Core.Injection;
-using LimeTestApp.Data.NorthwindDataContext;
+﻿
+
+using LimeTestApp.Data.NorthwindDb;
+using LimeTestApp.Infrastructure.Utils.Mailer;
 using LimeTestApp.Reports;
+using Ninject;
+using Ninject.Web.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,19 +24,11 @@ namespace LimeTest
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            //Загрузка модулей Ninject 
-            NinjectResolver.LoadModule<ReportLoadModule>(); //Отчеты
-
-            //Получаем строку подключения
-            System.Configuration.Configuration rootWebConfig =
-            System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("/MyWebSiteRoot");
-            System.Configuration.ConnectionStringSettings connString = null;
-            if (rootWebConfig.ConnectionStrings.ConnectionStrings.Count > 0)
-                connString = rootWebConfig.ConnectionStrings.ConnectionStrings["NorthwindConnectionString"];
-            
-            //Создаем контекст подключения к БД (строка подключения из web.config)
-            NinjectResolver.Bind<NorthwindModel>().To<NorthwindModel>()
-                           .WithConstructorArgument("conn", connString?.ConnectionString ?? "");
+            // внедрение зависимостей
+            var kernel = new StandardKernel();
+            kernel.Bind<INorthwindContext>().To<NorthwindContext>();
+            kernel.Bind<IMailSender>().To<MailSender>();
+            DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
 
         }
     }

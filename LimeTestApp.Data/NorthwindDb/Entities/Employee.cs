@@ -1,4 +1,4 @@
-namespace LimeTestApp.Data.NorthwindDataContext
+namespace LimeTestApp.Data.NorthwindDb.Entities
 {
     using System;
     using System.Collections.Generic;
@@ -6,28 +6,32 @@ namespace LimeTestApp.Data.NorthwindDataContext
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Customer")]
-    public partial class Customer
+    [Table("Employee")]
+    public partial class Employee
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Customer()
+        public Employee()
         {
             Order = new HashSet<Order>();
         }
 
         public int ID { get; set; }
 
-        [StringLength(5)]
-        public string Code { get; set; }
+        [StringLength(20)]
+        public string LastName { get; set; }
 
-        [StringLength(40)]
-        public string Name { get; set; }
-
-        [StringLength(30)]
-        public string ContactName { get; set; }
+        [StringLength(10)]
+        public string FirstName { get; set; }
 
         [StringLength(30)]
-        public string ContactTitle { get; set; }
+        public string Title { get; set; }
+
+        [StringLength(25)]
+        public string TitleOfCourtesy { get; set; }
+
+        public DateTime? BirthDate { get; set; }
+
+        public DateTime? HireDate { get; set; }
 
         [StringLength(60)]
         public string Address { get; set; }
@@ -45,10 +49,18 @@ namespace LimeTestApp.Data.NorthwindDataContext
         public string Country { get; set; }
 
         [StringLength(24)]
-        public string Phone { get; set; }
+        public string HomePhone { get; set; }
 
-        [StringLength(24)]
-        public string Fax { get; set; }
+        [StringLength(4)]
+        public string Extension { get; set; }
+
+        [StringLength(255)]
+        public string Photo { get; set; }
+
+        [Column(TypeName = "ntext")]
+        public string Notes { get; set; }
+
+        public int? ReportsTo { get; set; }
 
         [Column(TypeName = "timestamp")]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]

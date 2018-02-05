@@ -3,7 +3,7 @@ using DocumentFormat.OpenXml.Spreadsheet;
 using System;
 using System.Globalization;
 
-namespace ExcelReportBuilder
+namespace LimeTestApp.Infrastructure.Utils.ExcelReportBuilder
 {
     internal static class ExcelReportUtils
     {

@@ -1,6 +1,6 @@
 ﻿using DocumentFormat.OpenXml.Spreadsheet;
 
-namespace ExcelReportBuilder
+namespace LimeTestApp.Infrastructure.Utils.ExcelReportBuilder
 {
     public enum ExcelCellType { _number, _bool, _string, _date, _formula }
 

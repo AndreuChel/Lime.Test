@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ExcelReportBuilder
+namespace LimeTestApp.Infrastructure.Utils.ExcelReportBuilder
 {
     public class ExcelRow
     {

@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
-namespace ExcelReportBuilder
+namespace LimeTestApp.Infrastructure.Utils.ExcelReportBuilder
 {
     /*
      * Для построения отчетов используется библиотека "DocumentFormat.OpenXml".

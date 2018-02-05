@@ -1,22 +1,22 @@
-﻿using System;
+﻿using LimeTestApp.Data.NorthwindDb;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LimeTestApp.Reports.Infrastruture
+namespace LimeTestApp.Reports.Reports
 {
     /// <summary>
     /// Базовый класс отчетов
     /// </summary>
     public abstract class ReportBase
     {
-        /// <summary>
-        /// Построение отчета в MemoryStream
-        /// </summary>
-        /// <param name="_args"></param>
-        /// <returns></returns>
+        protected readonly INorthwindContext NorthwindContext;
+        public ReportBase(INorthwindContext _dc) { NorthwindContext = _dc; }
+
+        // Построение отчета в MemoryStream
         public abstract Stream BuildToStream(params object[] _args);
         
         public abstract string Title { get; }

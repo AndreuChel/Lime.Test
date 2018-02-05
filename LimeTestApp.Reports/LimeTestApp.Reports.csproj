@@ -53,27 +53,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Infrastruture\ReportBase.cs" />
-    <Compile Include="Infrastruture\Reports\SalesReport.cs" />
+    <Compile Include="Reports\ReportBase.cs" />
+    <Compile Include="Reports\SalesReport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReportLoadModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LimeTestApp.Core\LimeTestApp.Core.csproj">
-      <Project>{229953C8-B582-42FE-ACE2-4E08F4F75246}</Project>
-      <Name>LimeTestApp.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\LimeTestApp.Data\LimeTestApp.Data.csproj">
       <Project>{286DDE69-FFB7-4E99-90A4-C554B13C724B}</Project>
       <Name>LimeTestApp.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Miscellaneous\ExcelReportBuilder\ExcelReportBuilder.csproj">
-      <Project>{C1178892-8B67-4353-BED6-CCCC407EC2C9}</Project>
-      <Name>ExcelReportBuilder</Name>
+    <ProjectReference Include="..\LimeTestApp.Infrastructure\LimeTestApp.Infrastructure.csproj">
+      <Project>{93217feb-3f28-4700-87c8-276533383e20}</Project>
+      <Name>LimeTestApp.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
