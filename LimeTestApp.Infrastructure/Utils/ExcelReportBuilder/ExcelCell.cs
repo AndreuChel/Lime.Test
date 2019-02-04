@@ -2,7 +2,7 @@
 
 namespace LimeTestApp.Infrastructure.Utils.ExcelReportBuilder
 {
-    public enum ExcelCellType { _number, _bool, _string, _date, _formula }
+    public enum ExcelCellType { Number, Bool, String, Date, Formula }
 
     public class ExcelCell
     {
@@ -11,25 +11,28 @@ namespace LimeTestApp.Infrastructure.Utils.ExcelReportBuilder
         public int? StyleIndex { get; set; }
 
 
-        public ExcelCell (object _val, ExcelCellType _type = ExcelCellType._string, int? _styleIndex = null) { Value = _val; ValueType = _type; StyleIndex = _styleIndex; }
+	     public ExcelCell(object val, ExcelCellType type = ExcelCellType.String, int? styleIndex = null)
+	     {
+		    Value = val; ValueType = type; StyleIndex = styleIndex; 
+	     }
 
-        public void SetValue(object _val, ExcelCellType _type = ExcelCellType._string) { Value = _val; ValueType = _type; }
-        public void SetStyle(int _styleIndex) { StyleIndex = _styleIndex; }
+        public void SetValue(object val, ExcelCellType type = ExcelCellType.String) { Value = val; ValueType = type; }
+        public void SetStyle(int styleIndex) { StyleIndex = styleIndex; }
 
-        internal Cell get(int? _style = null)
+        internal Cell Get(int? style = null)
         {
             if (Value != null) {
-                if (ValueType == ExcelCellType._number)
-                    return Value.generateNumberCell(_style ?? StyleIndex);
-                if (ValueType == ExcelCellType._bool)
-                    return Value.generateBoolCell(_style ?? StyleIndex);
-                if (ValueType == ExcelCellType._date)
-                    return Value.generateDateTimeCell(_style ?? StyleIndex);
-                if (ValueType == ExcelCellType._formula)
-                    return Value.generateFormulaCell(_style ?? StyleIndex);
+                if (ValueType == ExcelCellType.Number)
+                    return Value.GenerateNumberCell(style ?? StyleIndex);
+                if (ValueType == ExcelCellType.Bool)
+                    return Value.GenerateBoolCell(style ?? StyleIndex);
+                if (ValueType == ExcelCellType.Date)
+                    return Value.GenerateDateTimeCell(style ?? StyleIndex);
+                if (ValueType == ExcelCellType.Formula)
+                    return Value.GenerateFormulaCell(style ?? StyleIndex);
             }
 
-            return Value.generateStringCell(_style ?? StyleIndex);
+            return Value.GenerateStringCell(style ?? StyleIndex);
         }
     }
 }

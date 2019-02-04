@@ -14,10 +14,10 @@ namespace LimeTestApp.Reports.Reports
     public abstract class ReportBase
     {
         protected readonly INorthwindContext NorthwindContext;
-        public ReportBase(INorthwindContext _dc) { NorthwindContext = _dc; }
+        protected ReportBase(INorthwindContext dbContext) { NorthwindContext = dbContext; }
 
         // Построение отчета в MemoryStream
-        public abstract Stream BuildToStream(params object[] _args);
+        public abstract Stream BuildToStream(params object[] args);
         
         public abstract string Title { get; }
 

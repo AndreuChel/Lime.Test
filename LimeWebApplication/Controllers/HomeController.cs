@@ -15,17 +15,18 @@ namespace LimeTest.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly INorthwindContext NorthwindDbContext;
-        private readonly IMailSender MailSender;
-        public HomeController(INorthwindContext _dc, IMailSender _mc)
+        private readonly INorthwindContext _northwindDbContext;
+        private readonly IMailSender _mailSender;
+
+        public HomeController(INorthwindContext dbContext, IMailSender mailSender)
         {
-            NorthwindDbContext = _dc;
-            MailSender = _mc;
+            _northwindDbContext = dbContext;
+            _mailSender = mailSender;
         }
 
         protected override void Dispose(bool disposing)
         {
-            NorthwindDbContext?.Dispose();
+            _northwindDbContext?.Dispose();
             base.Dispose(disposing);
         }
 
@@ -42,7 +43,7 @@ namespace LimeTest.Controllers
             try
             {
                 //Получаем класс отчета SalesReport
-                var salesRep = new SalesReport(NorthwindDbContext);
+                var salesRep = new SalesReport(_northwindDbContext);
 
                 //Строим отчет SalesReport в поток resultStream
                 using (var resultStream = salesRep.BuildToStream(model.StartDate, model.EndDate))
@@ -55,7 +56,7 @@ namespace LimeTest.Controllers
                         Subject = salesRep.Title,
                         Attachments = { new Attachment(resultStream, salesRep.FileName, "text/csv") }
                     };
-                    MailSender.Send(mail);
+                    _mailSender.Send(mail);
                 }
                 return RedirectToAction("Success");
             }

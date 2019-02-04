@@ -7,7 +7,7 @@ namespace LimeTestApp.Infrastructure.Utils.ExcelReportBuilder
 {
     internal static class ExcelReportUtils
     {
-        internal static Cell generateStringCell(this object obj, int? stileindex = null)
+        internal static Cell GenerateStringCell(this object obj, int? stileindex = null)
         {
             return new Cell()
             {
@@ -17,7 +17,7 @@ namespace LimeTestApp.Infrastructure.Utils.ExcelReportBuilder
             };
         }
 
-        internal static Cell generateFormulaCell(this object obj, int? stileindex = null)
+        internal static Cell GenerateFormulaCell(this object obj, int? stileindex = null)
         {
             return new Cell()
             {
@@ -26,17 +26,8 @@ namespace LimeTestApp.Infrastructure.Utils.ExcelReportBuilder
                 StyleIndex = UInt32Value.FromUInt32((uint)stileindex.GetValueOrDefault(0))
             };
         }
-        /*
-         * Cell cell = new Cell() { CellReference = "E4" };
-                CellFormula cellformula = new CellFormula();
-                cellformula.Text = "SUM(A1,C5)";
-                CellValue cellValue = new CellValue();
-                cellValue.Text = "0";
-                cell.Append(cellformula);
-                cell.Append(cellValue);
-         */
 
-        internal static Cell generateNumberCell(this object obj, int? stileindex = null)
+        internal static Cell GenerateNumberCell(this object obj, int? stileindex = null)
         {
             return new Cell
             {
@@ -46,15 +37,15 @@ namespace LimeTestApp.Infrastructure.Utils.ExcelReportBuilder
             };
         }
 
-        internal static Cell generateBoolCell(this object obj, int? stileindex = null)
+        internal static Cell GenerateBoolCell(this object obj, int? stileindex = null)
         {
-            if (!(obj is bool)) return "".generateStringCell();
-            return (((bool)obj) ? 1 : 0).generateNumberCell(stileindex);
+            if (!(obj is bool)) return "".GenerateStringCell();
+            return (((bool)obj) ? 1 : 0).GenerateNumberCell(stileindex);
         }
 
-        internal static Cell generateDateTimeCell(this object obj,int? stileindex = null)
+        internal static Cell GenerateDateTimeCell(this object obj,int? stileindex = null)
         {
-            if (obj == null || !(obj is DateTime)) return "".generateStringCell();
+            if (obj == null || !(obj is DateTime)) return "".GenerateStringCell();
             var date = (DateTime)obj;
             return new Cell {
                 CellValue = new CellValue((date.ToOADate()).ToString(CultureInfo.InvariantCulture)),
@@ -63,8 +54,7 @@ namespace LimeTestApp.Infrastructure.Utils.ExcelReportBuilder
             };
         }
 
-        //НИЧЕГО НЕ МЕНЯТЬ и НЕ УДАЛЯТЬ!
-        //МОЖНО ДОБАВЛЯТЬ 
+
         internal static Stylesheet DefaultStylesheet
         {
             get

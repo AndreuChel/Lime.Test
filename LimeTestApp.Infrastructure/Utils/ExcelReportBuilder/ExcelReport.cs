@@ -23,13 +23,11 @@ namespace LimeTestApp.Infrastructure.Utils.ExcelReportBuilder
     {
         public List<ExcelDocument> Documents { get; private set; } = new List<ExcelDocument>();
         public Stylesheet ReportStylesheet { get; set; } = ExcelReportUtils.DefaultStylesheet;
-        public bool IsBuilded { get; private set; } = false;
+        public bool IsBuilded { get; private set; }
 
-        public ExcelReport() { }
-
-        public ExcelDocument AddDocument(string _name)
+        public ExcelDocument AddDocument(string name)
         {
-            var doc = new ExcelDocument(_name);
+            var doc = new ExcelDocument(name);
             Documents.Add(doc);
             return doc;
         }
@@ -51,7 +49,7 @@ namespace LimeTestApp.Infrastructure.Utils.ExcelReportBuilder
 
             workbookpart.Workbook = new Workbook();
 
-            var WorksheetPartDict = Documents.ToDictionary(d => d, d=>
+            var worksheetPartDict = Documents.ToDictionary(d => d, d=>
             {
                 WorksheetPart worksheetPart = workbookpart.AddNewPart<WorksheetPart>();
                 worksheetPart.Worksheet = new Worksheet();
@@ -59,8 +57,8 @@ namespace LimeTestApp.Infrastructure.Utils.ExcelReportBuilder
                 //рисуем закрепленные области
                 if (d.FixedArea != null)
                 {
-                    SheetViews sheetViews = new SheetViews();
-                    SheetView sheetView = new SheetView() { TabSelected = false, WorkbookViewId = 0U };
+                    var sheetViews = new SheetViews();
+                    var sheetView = new SheetView { TabSelected = false, WorkbookViewId = 0U };
                     sheetView.Append(d.FixedArea);
                     sheetViews.Append(sheetView);
                     worksheetPart.Worksheet.Append(sheetViews);
@@ -69,18 +67,18 @@ namespace LimeTestApp.Infrastructure.Utils.ExcelReportBuilder
                 var cols = d.ColumnsPart;
                 if (cols.Any()) worksheetPart.Worksheet.AppendChild(cols);
 
-                worksheetPart.Worksheet.AppendChild(d.get());
+                worksheetPart.Worksheet.AppendChild(d.Get());
 
                 worksheetPart.Worksheet.Save();
                 return worksheetPart;
             });
 
             // Add Sheets to the Workbook.
-            Sheets sheets = spreadsheetDocument.WorkbookPart.Workbook.AppendChild<Sheets>(new Sheets());
+            var sheets = spreadsheetDocument.WorkbookPart.Workbook.AppendChild(new Sheets());
 
             uint cx = 0;
             sheets.Append(
-                WorksheetPartDict.Select(w => new Sheet() {
+                worksheetPartDict.Select(w => new Sheet() {
                     Id = spreadsheetDocument.WorkbookPart.GetIdOfPart(w.Value), SheetId = new UInt32Value(++cx), Name = w.Key.Name
                 }).ToList()
             );

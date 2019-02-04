@@ -20,7 +20,7 @@ namespace LimeTestApp.Infrastructure.Utils.ExcelReportBuilder
         public void Append(IEnumerable<ExcelCell> newCells) { Cells.AddRange(newCells); }
 
         internal Row get(int? _style = null) {
-            return new Row(Cells.Select(c => c.get(_style ?? (UseStyleForAllCells? StyleIndex: null))));
+            return new Row(Cells.Select(c => c.Get(_style ?? (UseStyleForAllCells? StyleIndex: null))));
         }
     }
 }
